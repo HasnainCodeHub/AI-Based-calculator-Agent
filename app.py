@@ -116,13 +116,49 @@ agent = initialize_agent(
 st.title("AI-Based Calculator Agent")
 st.write("Welcome to Hasnain's Coding World!")
 
-user_query = st.text_input("Ask your query:")
-if st.button("Submit"):
-    if user_query.strip():  # Check if input is not empty
-        try:
-            response = agent.invoke({"input": user_query})  # 'input' key in lowercase
-            st.write(response.get('output', 'No output available'))  # Safely access the response
-        except Exception as e:
-            st.error(f"An error occurred: {e}")
-    else:
-        st.warning("Please enter a query to proceed.")
+# Suggested queries
+suggested_queries = [
+    "What is 5 + 3?",
+    "Can you subtract 10 from 20?",
+    "Who is Hasnain?",
+    "Who is Founder/Developer/Creator?",
+    "Give me Hasnain's social accounts.",
+    "Multiply 7 and 8.",
+    "Divide 100 by 4.",
+    "Perform multiple operations like add 5 and 3, then multiply by 2."
+]
+
+st.write("### Suggested Queries:")
+for query in suggested_queries:
+    st.write(f"- {query}")
+
+# Initialize session state for conversation history
+if "conversation" not in st.session_state:
+    st.session_state.conversation = []  # Store user queries and responses
+
+# Input with Arrow Button
+# Input with Arrow Button
+col1, col2 = st.columns([4, 1])  # Adjust column sizes to previous proportions
+with col1:
+    user_query = st.text_input( "Enter your query and press ➡️")
+    if st.button("➡️"):  # Arrow button for submission
+        if user_query.strip():  # Check if input is not empty
+            try:
+                # Invoke the agent with the user's query
+                response = agent.invoke({"input": user_query})
+                agent_response = response.get('output', 'No output available')
+
+                # Update conversation history
+                st.session_state.conversation.append((user_query, agent_response))
+
+                # Display the conversation history
+                st.write("### Conversation History:")
+                for i, (query, reply) in enumerate(st.session_state.conversation, 1):
+                    st.write(f"Human Message: {query}")
+                    st.write(f"Agent Response:  {reply}")
+                    st.write("---")
+
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
+        else:
+            st.warning("Please enter a query to proceed.")
