@@ -89,7 +89,7 @@ def multiply(a: float, b: float) -> float:
 
 @tool
 def divide(a: float, b: float) -> float:
-    """Divide two integers."""
+    """Divide two numbers."""
     print("Tool Message: Division Tool is Called!")
     print("=" * 40)
     if b == 0:
@@ -126,9 +126,6 @@ def calculate_percentage(part: float, whole: float) -> float:
     percentage = (part / whole) * 100
     return round(percentage, 2)
 
-
-
-
 @tool
 def intro(input_str: str = "") -> str:
     """
@@ -153,7 +150,6 @@ def intro(input_str: str = "") -> str:
         He is exploring Agentic AI and intelligent agents, driving advancements in automation and artificial intelligence."""
     )
 
-
 @tool
 def creator(input_str: str = "") -> str:
     """
@@ -177,7 +173,6 @@ def creator(input_str: str = "") -> str:
         """
     )
 
-
 @tool
 def goodbye(input_str: str = "") -> str:
     """
@@ -196,7 +191,6 @@ def goodbye(input_str: str = "") -> str:
     print("Tool Message: Goodbye Tool is Called!")
     print("=" * 40)
     return "Goodbye! Thanks for your visit. Come again!"
-
 
 @tool
 def give_social_accounts(input_str: str = "") -> str:
@@ -239,7 +233,7 @@ tools = [
 ]
 
 # Initialize LLM
-llm = ChatGoogleGenerativeAI(api_key  = GOOGLE_API_KEY, model="gemini-2.0-flash-exp", verbose=True)
+llm = ChatGoogleGenerativeAI(api_key=GOOGLE_API_KEY, model="gemini-2.0-flash-exp", verbose=True)
 
 # =========================================AGENT=======================================================
 # Initialize the agent
@@ -286,7 +280,6 @@ for query in suggested_queries:
 if "conversation" not in st.session_state:
     st.session_state.conversation = []  # Store user queries and responses
 
-# Input with Arrow Button
 # Input with Arrow Button
 col1, col2 = st.columns([4, 1])  # Adjust column sizes to previous proportions
 with col1:
