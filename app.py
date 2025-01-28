@@ -8,7 +8,7 @@ import os
 # Load environment variables
 load_dotenv()
 
-GOOGLE_API_KEY = os.getenv("GEMINI_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 GOOGLE_APPLICATION_CREDENTIALS = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 
 # =========================================TOOLS=======================================================
